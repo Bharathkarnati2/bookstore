@@ -29,6 +29,13 @@ jobs:
           pip install -r bookstore/requirements.txt
           pip install pytest pytest-cov
 
+      - name: Start Uvicorn Server
+        run: |
+          source venv/bin/activate
+          uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
+        env:
+          PYTHONUNBUFFERED: 1
+
       - name: Run Unit Tests with Coverage
         run: |
           source venv/bin/activate
@@ -40,13 +47,6 @@ jobs:
           file: ./coverage.xml
           fail_ci_if_error: true
 
-      - name: Run Integration Tests
+      - name: Stop Uvicorn Server
         run: |
-          source venv/bin/activate
-          pytest tests/integration/
-
-      - name: Upload Coverage Report as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: htmlcov/
+          pkill -f "uvicorn"

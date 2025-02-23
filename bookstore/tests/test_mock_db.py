@@ -5,7 +5,7 @@ import os
 from unittest.mock import AsyncMock, MagicMock
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from bookstore.bookmgmt import create_book, get_all_books, get_book_by_id, update_book, delete_book
-from bookstore.database import Book
+from bookstore.database import *
 from .conftest import *
 
 
@@ -19,6 +19,12 @@ def sample_book():
     author="Mock Author",
     published_year=2024
 )
+
+@pytest.mark.asyncio
+async def test_db():
+    db = next(get_db())
+    assert db is not None
+    db.close()
 
 @pytest.mark.asyncio
 async def test_create_book(mock_db, sample_book):

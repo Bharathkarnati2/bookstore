@@ -45,7 +45,7 @@ jobs:
       - name: Run Unit Tests with Coverage
         run: |
           source venv/bin/activate
-          pytest --cov=bookstore --cov-report=xml bookstore/tests/
+          pytest --cov=bookstore --cov-report=xml --cov-report=html bookstore/tests/
 
       - name: Upload Coverage Report as Artifact
         uses: actions/upload-artifact@v4

@@ -2,7 +2,7 @@ import pytest
 from httpx import AsyncClient
 from urllib3 import request
 
-from .conftest import setup
+from .conftest import setup, base_url
 
 
 @pytest.mark.asyncio
@@ -23,6 +23,7 @@ class Test:
 
     async def test_insert_book(self,sample_val):
         async with AsyncClient(base_url=self.base_url) as client:
+            print(self.base_url , "url")
             data = sample_val
             response = await client.post("/books/",json = data, headers={"Authorization": f"Bearer {self.setup}"})
 

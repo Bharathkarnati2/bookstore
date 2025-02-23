@@ -11,6 +11,7 @@ Base = declarative_base()
 
 class UserCredentials(SQLModel, table=True):
     __tablename__ = "user_credentials"
+    __table_args__ = {"extend_existing": True}
     id: Optional[int] = Field(default=None, primary_key=True, index=True)
     email: str = Field(index=True, unique=True)
     password: str
@@ -18,6 +19,7 @@ class UserCredentials(SQLModel, table=True):
 
 class Book(SQLModel, table=True):
     __tablename__ = "books"
+    __table_args__ = {"extend_existing": True}
     id: Optional[int] = Field(default=None, primary_key=True, index=True)
     name: str = Field(index=True)
     author: str = Field(index=True)

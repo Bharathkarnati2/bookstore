@@ -26,7 +26,7 @@ class Test:
             print(self.base_url , "url")
             data = sample_val
             response = await client.post("/books/",json = data, headers={"Authorization": f"Bearer {self.setup}"})
-
+            print(response.status_code, response.text)
             assert response.status_code == 200
             print(response.json())
 

@@ -39,6 +39,9 @@ jobs:
         env:
           PYTHONUNBUFFERED: 1
 
+      - name: Wait for API to be Ready
+        run: sleep 5
+
       - name: Run Unit Tests with Coverage
         run: |
           source venv/bin/activate

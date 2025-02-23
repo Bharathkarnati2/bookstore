@@ -23,7 +23,6 @@ class Test:
 
     async def test_insert_book(self,sample_val):
         async with AsyncClient(base_url=self.base_url) as client:
-            print(self.base_url , "url")
             data = sample_val
             response = await client.post("/books/",json = data, headers={"Authorization": f"Bearer {self.setup}"})
             print(response.status_code, response.text)
@@ -33,9 +32,8 @@ class Test:
     async def test_get_book_by_id(self):
         """Test retrieving a book by ID using the mocked DB."""
         async with AsyncClient(base_url=self.base_url) as client:
-            #resp = await client.get("/book/123")
             response = await client.get(
-                "/books/2",
+                "/books/9",
                 headers={"Authorization": f"Bearer {self.setup}"},
             )
             assert response.status_code == 200
@@ -44,12 +42,12 @@ class Test:
 
 
     async def test_update_book(self):
-        id_val = 4
+        id_val = 9
         async with AsyncClient(base_url=self.base_url) as client:
             data = {
-                      "id": 4,
-                      "name": "C",
-                      "author": "C-admin",
+                      "id": 9,
+                      "name": "DS",
+                      "author": "DS-updated_admin",
                       "published_year": 1960,
                       "book_summary": "Coding"
                     }

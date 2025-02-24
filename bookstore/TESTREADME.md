@@ -40,7 +40,7 @@
 
 ### Prerequisites
 
-1. Ensure you have Python  installed.
+1. Ensure you have Python 3.9 above  installed.
 2. Install dependencies using:
    ```bash
    pip install -r requirements.txt
@@ -53,7 +53,9 @@
   pytest --cov=bookstore tests/
 ```
 
-#### Run test coverage from bookstore and htmlcov folder will be created so in that index.html will give complete details of Coverage in HTML report
+#### To generate a detailed test coverage report in HTML format, run:
+This command runs all tests and generates a coverage report in an htmlcov/directory.
+Index.html report visually highlights which lines of code are tested and which are not.
 ```bash
   pytest --cov=bookstore  --cov-report=html tests/
 ```
@@ -77,4 +79,5 @@
 
 ### Notes
 - Test results and **coverage reports** are generated automatically in **CI/CD pipeline**.
-- The **coverage report** is uploaded as an artifact in GitHub Actions.
+- The **coverage report** can be downloaded from:
+  GitHub Actions → Workflow Run → Artifacts section → `coverage-report`

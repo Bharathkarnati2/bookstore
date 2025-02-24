@@ -55,7 +55,7 @@
 
 #### To generate a detailed test coverage report in HTML format, run:
 This command runs all tests and generates a coverage report in an htmlcov/directory.
-Index.html report visually highlights which lines of code are tested and which are not.
+Index.html report visually highlights which lines of code are tested and which are not tested.
 ```bash
   pytest --cov=bookstore  --cov-report=html tests/
 ```

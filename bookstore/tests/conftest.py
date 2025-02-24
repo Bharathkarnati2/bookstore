@@ -50,7 +50,7 @@ async def setup(base_url):
         if response.status_code == 200:
             resp_json = response.json()
             access_token = resp_json["access_token"]
-            return access_token
+            yield  access_token
         elif "Incorrect email or password" in response.text:
             response_signup = await client.post("/signup", json=data)
             if response_signup.status_code ==200:
@@ -58,7 +58,7 @@ async def setup(base_url):
                 assert response.status_code == 200
                 resp_json = response.json()
                 access_token = resp_json["access_token"]
-                return access_token
+                yield  access_token
 
 
 

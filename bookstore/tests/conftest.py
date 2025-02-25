@@ -15,27 +15,13 @@ def mock_db():
     return mock_collection
 
 
-
-
-def get_config():
-    """Reads pytest.ini manually and extracts the URL."""
-    config_path = os.path.join(os.path.dirname(__file__), "pytest.ini")
-    config = configparser.ConfigParser()
-
-    if os.path.exists(config_path):
-        config.read(config_path)
-        url = config.get("URL", "url")
-        return url
-    #return "http://127.0.0.1:8000"  # Fallback URL
-
-
-
+BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
 
 
 @pytest.fixture(scope="session")
 def base_url():
     """Fixture to return the base URL from the ini file."""
-    return get_config()
+    return BASE_URL
 
 
 @pytest.fixture

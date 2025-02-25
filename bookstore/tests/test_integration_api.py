@@ -12,6 +12,11 @@ class Test:
         self.setup = setup
         self.base_url = base_url
 
+    async def test_api_healthcheck(self):
+        async with AsyncClient(base_url=self.base_url) as client:
+            response = await client.get("/health")
+            assert response.status_code == 200
+
     @pytest.mark.parametrize("sample_val", [{
           "id": 9,
           "name": "DS",
@@ -30,7 +35,6 @@ class Test:
             print(response.json())
 
     async def test_get_book_by_id(self):
-        """Test retrieving a book by ID using the mocked DB."""
         async with AsyncClient(base_url=self.base_url) as client:
             response = await client.get(
                 "/books/9",

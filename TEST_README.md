@@ -45,8 +45,21 @@
    ```bash
    pip install -r requirements.txt
    ```
+3. Navigate to the project directory:
+
+    ```bash
+    cd bookstore
+    ```
 
 ### Running Tests
+
+
+#### Before running tests for Api's testing run below command to run main.py ,which will run in http://127.0.0.1:8000
+
+```bash
+  uvicorn main:app --reload
+```
+
 
 #### Run test coverage from bookstore which will give coverage in terminal
 ```bash
@@ -60,17 +73,17 @@ Index.html report visually highlights which lines of code are tested and which a
   pytest --cov=bookstore  --cov-report=html tests/
 ```
 
-#### Run specific integration tests from bookstore
+#### Run api integration tests from bookstore 
 ```bash
   pytest tests/test_integration_api.py
 ```
 
-#### Run mock database tests from bookstore
+#### To test db related testing
 ```bash
   pytest tests/test_mock_db.py
 ```
 
-#### Run credential tests from bookstore
+#### To test credentials related testing
 ```bash
   pytest tests/test_credentials.py
 ```
@@ -80,4 +93,4 @@ Index.html report visually highlights which lines of code are tested and which a
 ### Notes
 - Test results and **coverage reports** are generated automatically in **CI/CD pipeline**.
 - The **coverage report** can be downloaded from:
-  GitHub Actions → Workflow Run → Artifacts section → `coverage-report`
+  GitHub Actions → Workflow Run → Artifacts section → at bottom of the page `coverage-report`

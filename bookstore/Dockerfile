@@ -1,13 +1,14 @@
-FROM python:3.10.12-slim
+FROM Python:3.11-slim
 
 WORKDIR /app
 
-RUN /usr/local/bin/python -m pip install --upgrade pip
+COPY ./requirements.txt
 
-COPY ./requirements.txt /code/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY . .
 
-COPY ./ ./
+EXPOSE 5000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers", "--reload"]
+CMD ["uvicorn", "main:app", "0.0.0.0:5000", "--proxy-headers", "--reload"]
+

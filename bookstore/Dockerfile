@@ -19,7 +19,5 @@ COPY --from=build /install /usr/local
 
 EXPOSE 5000
 
-ENTRYPOINT ["python"]
-
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
 
